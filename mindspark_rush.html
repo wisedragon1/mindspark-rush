@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101322">
+<meta name="description" content="MindSpark Rush — a fast, fun brain challenge. Beat the clock, build a streak, and challenge your friends.">
+<title>MindSpark Rush — Brain Challenge</title>
+<style>
+:root{--bg:#101322;--panel:#191e32;--panel2:#222943;--text:#f6f7ff;--muted:#aab2d0;--lime:#d6ff65;--pink:#ff78b7;--cyan:#70e8ff;--good:#85f0b2;--bad:#ff8e9b}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 10% 0%,#29345a 0,transparent 42%),radial-gradient(ellipse at 100% 40%,#34214d 0,transparent 34%),var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:780px;margin:0 auto;padding:18px 16px 38px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 26px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.04em;font-size:19px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,var(--lime),var(--cyan));display:grid;place-items:center;color:#15192a;font-size:23px;box-shadow:0 6px 25px #70e8ff22}.pill{border:1px solid #ffffff20;border-radius:99px;padding:8px 12px;color:var(--muted);font-size:12px;font-weight:700}
+.hero{text-align:center;margin-bottom:22px}.eyebrow{color:var(--lime);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.hero h1{font-size:clamp(34px,8vw,58px);line-height:.98;letter-spacing:-.065em;margin:12px 0}.hero h1 span{color:var(--lime)}.hero p{max-width:470px;margin:0 auto;color:var(--muted);line-height:1.55;font-size:14px}
+.card{background:linear-gradient(150deg,#202741ed,#171b2ceF);border:1px solid #ffffff16;border-radius:26px;padding:clamp(18px,4vw,28px);box-shadow:0 24px 80px #0003}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}.stat{background:#ffffff08;border:1px solid #ffffff0e;border-radius:16px;padding:12px 10px;text-align:center}.stat .label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:800}.stat .value{font-size:24px;font-weight:900;letter-spacing:-.04em;margin-top:4px}.lime{color:var(--lime)}.cyan{color:var(--cyan)}.pink{color:var(--pink)}
+.progress{height:6px;background:#ffffff13;border-radius:99px;overflow:hidden;margin:2px 0 20px}.progressbar{height:100%;width:100%;background:linear-gradient(90deg,var(--lime),var(--cyan));transition:width .2s linear}
+.question-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px;color:var(--muted);font-size:12px;font-weight:800}.tag{border-radius:8px;background:#d6ff6517;color:var(--lime);padding:6px 9px;text-transform:uppercase;letter-spacing:.08em;font-size:10px}
+.question{font-size:clamp(23px,5.6vw,35px);line-height:1.15;letter-spacing:-.04em;font-weight:850;margin:0 0 22px;min-height:82px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:11px}.answer{min-height:62px;text-align:left;padding:14px;border-radius:15px;border:1px solid #ffffff1a;background:#ffffff08;color:var(--text);font-weight:750;transition:transform .12s,border-color .12s,background .12s}.answer:hover:not(:disabled){transform:translateY(-2px);border-color:#d6ff6570;background:#d6ff6510}.answer .letter{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:#ffffff10;color:var(--muted);font-size:12px;margin-right:8px}.answer.correct{background:#85f0b21c;border-color:var(--good);color:var(--good)}.answer.wrong{background:#ff8e9b18;border-color:var(--bad);color:var(--bad)}.answer:disabled{cursor:default}
+.feedback{min-height:26px;margin:15px 0 0;font-size:13px;color:var(--muted);font-weight:700}.feedback.good{color:var(--good)}.feedback.bad{color:var(--bad)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{border:0;border-radius:14px;padding:14px 18px;font-weight:900;flex:1;min-width:130px;transition:transform .12s,filter .12s}.btn:hover{filter:brightness(1.05);transform:translateY(-1px)}.primary{background:var(--lime);color:#15192a}.secondary{background:#ffffff0d;border:1px solid #ffffff1b;color:var(--text)}.smallbtn{padding:10px 13px;font-size:12px;min-width:auto;flex:0}
+.hidden{display:none!important}.start-emoji{font-size:52px;margin:8px 0}.feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 0}.feature{background:#ffffff07;border:1px solid #ffffff12;border-radius:14px;padding:13px 10px;text-align:center}.feature b{display:block;font-size:13px}.feature small{display:block;color:var(--muted);font-size:11px;line-height:1.4;margin-top:5px}.end-score{font-size:clamp(54px,14vw,82px);font-weight:950;letter-spacing:-.08em;color:var(--lime);line-height:1.05;margin:12px 0}.end-title{font-size:28px;letter-spacing:-.05em;margin:0}.end-copy{color:var(--muted);line-height:1.55;font-size:14px}.bestline{color:var(--cyan);font-size:13px;font-weight:800;margin-top:8px}.footer{text-align:center;color:#858eaf;font-size:11px;line-height:1.6;margin:20px 8px 0}.footer a{color:var(--cyan)}
+@media(max-width:420px){.wrap{padding:12px 12px 28px}.top{margin-bottom:21px}.answers{grid-template-columns:1fr}.answer{min-height:54px}.question{min-height:auto}.feature-row{gap:6px}.feature{padding:11px 6px}.feature small{font-size:10px}.stat .value{font-size:21px}.card{border-radius:22px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">✦</div><span>MindSpark <span class="lime">Rush</span></span></div>
+    <div class="pill">⚡ QUICK PLAY · FREE</div>
+  </header>
+  <section class="hero">
+    <div class="eyebrow">Your brain. The clock. Go.</div>
+    <h1>Think fast.<br><span>Stay sharp.</span></h1>
+    <p>Answer as many questions as you can before time runs out. Build a streak, beat your best, and challenge a friend.</p>
+  </section>
+  <main class="card">
+    <section id="startScreen">
+      <div class="start-emoji">🧠⚡</div>
+      <h2 style="font-size:28px;letter-spacing:-.05em;margin:0 0 8px">Ready for the rush?</h2>
+      <p class="end-copy">You have 60 seconds. Correct answers earn points. Consecutive correct answers build your streak multiplier. One wrong answer breaks it — keep your cool!</p>
+      <div class="feature-row">
+        <div class="feature"><b>⏱ 60 seconds</b><small>Quick rounds, no waiting</small></div>
+        <div class="feature"><b>🔥 Streak bonus</b><small>Keep your answers rolling</small></div>
+        <div class="feature"><b>🏆 Personal best</b><small>Saved on this device</small></div>
+      </div>
+      <div class="actions"><button id="startBtn" class="btn primary">Start the challenge →</button></div>
+      <p style="color:var(--muted);font-size:11px;text-align:center;margin:14px 0 0">No account needed. Your best score stays on this device.</p>
+    </section>
+
+    <section id="gameScreen" class="hidden">
+      <div class="stats">
+        <div class="stat"><div class="label">Score</div><div id="score" class="value lime">0</div></div>
+        <div class="stat"><div class="label">Time left</div><div id="time" class="value cyan">60</div></div>
+        <div class="stat"><div class="label">Streak</div><div id="streak" class="value pink">×1</div></div>
+      </div>
+      <div class="progress"><div id="timeBar" class="progressbar"></div></div>
+      <div class="question-meta"><span id="qCount">QUESTION 1</span><span id="category" class="tag">Logic</span></div>
+      <h2 id="question" class="question"></h2>
+      <div id="answers" class="answers"></div>
+      <p id="feedback" class="feedback" aria-live="polite">Choose quickly — every second counts.</p>
+      <div class="actions"><button id="skipBtn" class="btn secondary smallbtn">Skip question ↗</button><button id="quitBtn" class="btn secondary smallbtn">End round</button></div>
+    </section>
+
+    <section id="endScreen" class="hidden">
+      <div class="eyebrow">Round complete</div>
+      <h2 id="endTitle" class="end-title">Nice run!</h2>
+      <div id="finalScore" class="end-score">0</div>
+      <p id="endCopy" class="end-copy"></p>
+      <div class="stats">
+        <div class="stat"><div class="label">Correct</div><div id="correctCount" class="value lime">0</div></div>
+        <div class="stat"><div class="label">Best streak</div><div id="bestStreak" class="value pink">0</div></div>
+        <div class="stat"><div class="label">Best score</div><div id="bestScore" class="value cyan">0</div></div>
+      </div>
+      <div class="actions"><button id="shareBtn" class="btn primary">Challenge a friend ↗</button><button id="againBtn" class="btn secondary">Play again</button></div>
+      <p id="shareStatus" class="feedback" aria-live="polite"></p>
+    </section>
+  </main>
+  <p class="footer">MindSpark Rush is an independent prototype. Scores are stored locally on your device; global leaderboards, accounts, analytics, and advertising are not connected yet. Play fair. Challenge kindly.</p>
+</div>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const questions = [
+ {c:"Logic",q:"What comes next? 2, 4, 8, 16, …",a:["18","24","32","30"],k:2,e:"Each number doubles: 16 × 2 = 32."},
+ {c:"Math",q:"What is 15% of 200?",a:["20","25","30","35"],k:2,e:"10% is 20 and 5% is 10. Together: 30."},
+ {c:"Science",q:"Which planet is known as the Red Planet?",a:["Venus","Mars","Jupiter","Mercury"],k:1,e:"Iron-rich dust gives Mars its reddish appearance."},
+ {c:"Wordplay",q:"Which word becomes shorter when you add two letters to it?",a:["Small","Short","Tiny","Brief"],k:1,e:"SHORT + ER becomes SHORTER."},
+ {c:"Logic",q:"A farmer has 17 sheep. All but 9 run away. How many remain?",a:["8","9","17","0"],k:1,e:"“All but 9” means 9 sheep remain."},
+ {c:"Geography",q:"Which is the largest ocean on Earth?",a:["Atlantic","Indian","Arctic","Pacific"],k:3,e:"The Pacific Ocean is the largest."},
+ {c:"Math",q:"What is 12 × 12?",a:["124","144","132","154"],k:1,e:"12 times 12 equals 144."},
+ {c:"Science",q:"What gas do plants absorb from the air for photosynthesis?",a:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],k:2,e:"Plants use carbon dioxide, water, and light to make sugars."},
+ {c:"Wordplay",q:"Unscramble the letters: LISTEN. Which word can they form?",a:["SILENT","TINSEL","ENLIST","All three"],k:3,e:"LISTEN can be rearranged to make silent, tinsel, and enlist."},
+ {c:"Logic",q:"If 5 machines make 5 toys in 5 minutes, how long for 100 machines to make 100 toys?",a:["5 minutes","20 minutes","100 minutes","500 minutes"],k:0,e:"Each machine makes one toy in 5 minutes."},
+ {c:"Math",q:"What is half of three quarters of 80?",a:["20","30","40","60"],k:1,e:"Three quarters of 80 is 60; half of 60 is 30."},
+ {c:"Geography",q:"Which country has the city of Kyoto?",a:["China","South Korea","Japan","Thailand"],k:2,e:"Kyoto was Japan's capital for more than a thousand years."},
+ {c:"Science",q:"How many bones are typically in an adult human body?",a:["106","206","306","406"],k:1,e:"Most adults have 206 bones."},
+ {c:"Logic",q:"You pass the person in second place in a race. What place are you in?",a:["First","Second","Third","It depends"],k:1,e:"You take the second-place position."},
+ {c:"Math",q:"What is 9 squared?",a:["18","72","81","99"],k:2,e:"9 × 9 = 81."},
+ {c:"Science",q:"Which part of a cell contains most of its genetic material?",a:["Nucleus","Membrane","Ribosome","Cytoplasm"],k:0,e:"In most eukaryotic cells, DNA is mainly in the nucleus."},
+ {c:"Wordplay",q:"What has hands but cannot clap?",a:["A statue","A clock","A robot","A glove"],k:1,e:"A clock has hour and minute hands."},
+ {c:"Geography",q:"What is the capital of Canada?",a:["Toronto","Vancouver","Ottawa","Montreal"],k:2,e:"Ottawa is Canada's capital."},
+ {c:"Math",q:"A $50 item is discounted by 20%. What is the new price?",a:["$10","$30","$40","$45"],k:2,e:"20% of $50 is $10, so the new price is $40."},
+ {c:"Logic",q:"Which number does not belong: 3, 5, 7, 9, 11?",a:["3","7","9","11"],k:2,e:"9 is not prime; it is 3 × 3."},
+ {c:"Science",q:"At sea level, water boils at approximately…",a:["50°C","80°C","100°C","120°C"],k:2,e:"At standard atmospheric pressure, water boils at 100°C."},
+ {c:"Math",q:"What is 7 × 8?",a:["54","56","64","58"],k:1,e:"Seven times eight is 56."},
+ {c:"Logic",q:"A dozen eggs costs $3. How much do 4 eggs cost at the same rate?",a:["$0.50","$0.75","$1.00","$1.50"],k:1,e:"Four eggs are one-third of a dozen, so they cost $1."},
+ {c:"Geography",q:"Which continent is the Sahara Desert in?",a:["Asia","Africa","Australia","South America"],k:1,e:"The Sahara is in northern Africa."},
+ {c:"Science",q:"What force pulls objects toward Earth?",a:["Magnetism","Friction","Gravity","Pressure"],k:2,e:"Gravity attracts objects with mass toward one another."},
+ {c:"Math",q:"What is 144 divided by 12?",a:["10","11","12","14"],k:2,e:"12 × 12 = 144."},
+ {c:"Logic",q:"How many months have at least 28 days?",a:["1","2","6","12"],k:3,e:"Every month has at least 28 days."},
+ {c:"Wordplay",q:"What can travel around the world while staying in one corner?",a:["A stamp","A map","A shadow","A compass"],k:0,e:"A stamp can sit in the corner of an envelope."},
+ {c:"Science",q:"Which is the closest star to Earth?",a:["Sirius","The Sun","Proxima Centauri","Polaris"],k:1,e:"The Sun is Earth's closest star."},
+ {c:"Math",q:"If x + 7 = 19, what is x?",a:["10","11","12","13"],k:2,e:"19 − 7 = 12."}
+];
+let deck=[], index=0, score=0, streak=0, maxStreak=0, correct=0, seconds=60, timer=null, locked=false, current=null;
+let best = Number(localStorage.getItem('msr_best') || 0);
+const startScreen=$('startScreen'),gameScreen=$('gameScreen'),endScreen=$('endScreen');
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function show(which){startScreen.classList.toggle('hidden',which!=='start');gameScreen.classList.toggle('hidden',which!=='game');endScreen.classList.toggle('hidden',which!=='end');}
+function start(){clearInterval(timer);deck=shuffle([...questions]);index=0;score=0;streak=0;maxStreak=0;correct=0;seconds=60;locked=false;show('game');updateStats();loadQuestion();timer=setInterval(()=>{seconds--;updateStats();if(seconds<=0)finish();},1000);}
+function updateStats(){$('score').textContent=score;$('time').textContent=seconds;$('streak').textContent='×'+Math.max(1,Math.min(4,1+Math.floor(streak/3)));$('timeBar').style.width=Math.max(0,seconds/60*100)+'%';}
+function loadQuestion(){if(seconds<=0){finish();return;}if(index>=deck.length){deck=shuffle([...questions]);index=0;}current=deck[index];locked=false;$('qCount').textContent='QUESTION '+(index+1);$('category').textContent=current.c;$('question').textContent=current.q;$('feedback').textContent='Choose quickly — every second counts.';$('feedback').className='feedback';const answers=$('answers');answers.innerHTML='';current.a.forEach((answer,i)=>{const b=document.createElement('button');b.className='answer';b.innerHTML='<span class="letter">'+String.fromCharCode(65+i)+'</span>';const span=document.createElement('span');span.textContent=answer;b.appendChild(span);b.addEventListener('click',()=>choose(i,b));answers.appendChild(b);});}
+function choose(choice,button){if(locked||seconds<=0)return;locked=true;const buttons=[...$('answers').querySelectorAll('button')];buttons.forEach((b,i)=>{b.disabled=true;if(i===current.k)b.classList.add('correct');});if(choice===current.k){streak++;maxStreak=Math.max(maxStreak,streak);correct++;const multiplier=Math.min(4,1+Math.floor((streak-1)/3));const points=100*multiplier;score+=points;$('feedback').textContent='Correct! +'+points+' points. '+current.e;$('feedback').className='feedback good';}else{button.classList.add('wrong');streak=0;$('feedback').textContent='Not quite. '+current.e;$('feedback').className='feedback bad';}updateStats();setTimeout(()=>{index++;loadQuestion();},850);}
+function skip(){if(locked)return;locked=true;streak=0;$('feedback').textContent='Skipped — keep moving!';$('feedback').className='feedback';[...$('answers').querySelectorAll('button')].forEach(b=>b.disabled=true);updateStats();setTimeout(()=>{index++;loadQuestion();},300);}
+function finish(){if(gameScreen.classList.contains('hidden'))return;clearInterval(timer);seconds=Math.max(0,seconds);const previous=best;best=Math.max(best,score);localStorage.setItem('msr_best',String(best));show('end');$('finalScore').textContent=score.toLocaleString();$('correctCount').textContent=correct;$('bestStreak').textContent=maxStreak;$('bestScore').textContent=best.toLocaleString();$('endTitle').textContent=score>=1000?'Brain power unlocked!':score>=500?'Nice run!':'Every round makes you sharper.';$('endCopy').textContent=score>previous&&score>0?'New personal best! Can your friends beat '+score.toLocaleString()+' points? Share your score and challenge them.':'You answered '+correct+' question'+(correct===1?'':'s')+' correctly. Can you beat '+best.toLocaleString()+' points next time?';$('shareStatus').textContent='';}
+async function share(){const text='I scored '+score.toLocaleString()+' points on MindSpark Rush ⚡ Can you beat me? Play the brain challenge: '+location.href;try{if(navigator.share){await navigator.share({title:'MindSpark Rush challenge',text,url:location.href});$('shareStatus').textContent='Challenge shared — let the brain battle begin!';}else if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text);$('shareStatus').textContent='Challenge copied! Paste it into WhatsApp, YouTube, or your group chat.';}else{$('shareStatus').textContent=text;}}catch(e){if(e.name!=='AbortError'){$('shareStatus').textContent='Copy your challenge: '+text;}}}
+$('startBtn').addEventListener('click',start);$('againBtn').addEventListener('click',start);$('skipBtn').addEventListener('click',skip);$('quitBtn').addEventListener('click',finish);$('shareBtn').addEventListener('click',share);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!gameScreen.classList.contains('hidden'))updateStats();});
+})();
+</script>
+</body>
+</html>
